@@ -10,6 +10,20 @@ packages = [{include = "virtual_bookshelf"}]
 python = "^3.11"
 
 
+[tool.poetry.group.dev.dependencies]
+blue = "^0.9.1"
+isort = "^5.12.0"
+mypy = "^1.1.1"
+taskipy = "^1.10.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.taskipy.tasks]
+lint = "isort --check --diff . && blue --check --diff . && mypy ."
+format = "isort . && blue ."
