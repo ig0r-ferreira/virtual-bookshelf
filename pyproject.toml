@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "virtual-bookshelf"
+version = "0.1.0"
+description = "A virtual bookshelf."
+authors = ["Igor Ferreira <iferreira.n01@gmail.com>"]
+readme = "README.md"
+packages = [{include = "virtual_bookshelf"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
