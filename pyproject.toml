@@ -8,6 +8,8 @@ packages = [{include = "virtual_bookshelf"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+flask = "^2.2.3"
+bootstrap-flask = "^2.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
