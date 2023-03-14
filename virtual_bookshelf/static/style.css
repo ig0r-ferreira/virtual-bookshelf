@@ -1,15 +1,44 @@
 body {
     min-height: 100vh;
     background-image: radial-gradient(circle 755px at 10.1% 95.3%, rgba(242, 188, 141, 1) 0%, rgba(242, 159, 141, 1) 100.2%);
-    padding-top: 40px;
+    padding: 0.5rem;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 50rem;
     text-align: center;
     margin: 0 auto;
 }
 
-.container > * {
-    margin: 25px 0;
+h1 {
+    margin: 2.5rem 0;
+}
+
+.btn {
+    min-width: 8rem;
+}
+
+table {
+    margin-top: 3rem;
+}
+
+form {
+    max-width: 24rem;
+    margin: 0 auto;
+}
+
+form button {
+    margin-top: 1.5rem;
+}
+
+.row {
+    margin-bottom: 0.5rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    text-align: center;
 }

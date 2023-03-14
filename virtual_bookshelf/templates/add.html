@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block head %}
+    {{ super() }}
+    <meta name="description" content="Add a new book to the virtual bookshelf.">
+    <title>Add book - My Virtual Bookshelf</title>
+{% endblock head %}
+{% block content %}
+<main class="container">
+    <h1>Add new book</h1>
+    <form action="{{ url_for('add_book') }}" method="post">            
+        <div class="row mx-auto">
+            <label class="form-label" for="book-name">Book Name</label>
+            <input class="form-control" type="text" id="book-name" name="book-name" required>
+        </div>
+        <div class="row mx-auto">
+            <label class="form-label" for="book-author">Book Author</label>
+            <input class="form-control" type="text" id="book-author" name="book-author" required>
+        </div>
+        <div class="row mx-auto">
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-control" type="number" id="rating" name="rating" min="0" max="10" required>
+        </div>
+        <button class="btn btn-dark" type="submit">Add</button>
+    </form>
+</main>
+{% endblock content %}

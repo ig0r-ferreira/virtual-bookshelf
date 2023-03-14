@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block head %}
     {{ super() }}
     <meta name="description" content="A virtual bookshelf.">
@@ -7,7 +7,7 @@
 {% block content %}
     <main class="container">
         <h1>My Virtual Bookshelf</h1>
-        <a href="#" class="btn btn-dark">New book</a>
+        <a href="{{ url_for('add_book') }}" class="btn btn-dark">New book</a>
         <table class="table">
             <thead>
                 <tr>
