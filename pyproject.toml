@@ -10,6 +10,8 @@ packages = [{include = "virtual_bookshelf"}]
 python = "^3.11"
 flask = "^2.2.3"
 bootstrap-flask = "^2.2.0"
+flask-sqlalchemy = "^3.0.3"
+python-dotenv = "^1.0.0"
 
 
 [tool.poetry.group.dev.dependencies]

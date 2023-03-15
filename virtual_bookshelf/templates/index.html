@@ -17,6 +17,13 @@
                 </tr>
             </thead>
             <tbody>
+                {% for book in all_books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.rating }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </main>
