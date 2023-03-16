@@ -22,7 +22,7 @@ def home() -> str:
 def add_book() -> str | Response:
     if request.method == 'POST':
         book = Book(
-            title=request.form['book-name'],
+            title=request.form['book-title'],
             author=request.form['book-author'],
             rating=float(request.form['rating']),
         )
