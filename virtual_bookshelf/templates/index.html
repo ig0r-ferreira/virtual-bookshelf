@@ -8,6 +8,9 @@
     <main class="container">
         <h1>My Virtual Bookshelf</h1>
         <a href="{{ url_for('add_book') }}" class="btn btn-dark">New book</a>
+        {% if all_books %}
+        <a href="{{ url_for('delete_all') }}" class="btn btn-dark">Clear all</a>
+        {% endif %}
         <table class="table">
             <thead>
                 <tr>

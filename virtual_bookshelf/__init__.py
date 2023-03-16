@@ -1,6 +1,8 @@
+from typing import Sequence
+
 from flask import Flask, redirect, render_template, request, url_for
 from flask_bootstrap import Bootstrap5
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from werkzeug.wrappers import Response
 
 from virtual_bookshelf import database
@@ -31,3 +33,10 @@ def add_book() -> str | Response:
         return redirect(url_for('home'))
 
     return render_template('add.html')
+
+
+@app.route('/delete-all')
+def delete_all() -> Response:
+    Session.execute(delete(Book))
+    Session.commit()
+    return redirect(url_for('home'))
