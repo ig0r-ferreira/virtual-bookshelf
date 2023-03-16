@@ -1,5 +1,3 @@
-from typing import Sequence
-
 from flask import Flask, redirect, render_template, request, url_for
 from flask_bootstrap import Bootstrap5
 from sqlalchemy import delete, select
@@ -38,5 +36,13 @@ def add_book() -> str | Response:
 @app.route('/delete-all')
 def delete_all() -> Response:
     Session.execute(delete(Book))
+    Session.commit()
+    return redirect(url_for('home'))
+
+
+@app.route('/delete/<int:id>')
+def delete_book(id: str) -> Response:
+    book = Session.get(Book, id)
+    Session.delete(book)
     Session.commit()
     return redirect(url_for('home'))

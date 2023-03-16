@@ -14,8 +14,10 @@ h1 {
     margin: 2.5rem 0;
 }
 
+
 .btn {
     min-width: 8rem;
+    margin: 0.5rem;
 }
 
 table {
@@ -27,7 +29,7 @@ form {
     margin: 0 auto;
 }
 
-form button {
+form .btn {
     margin-top: 1.5rem;
 }
 
@@ -41,4 +43,8 @@ label {
 
 input {
     text-align: center;
+}
+
+.bi {
+    margin: 0.5rem;
 }
