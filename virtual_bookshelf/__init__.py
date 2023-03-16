@@ -1,36 +1,20 @@
 from flask import Flask, redirect, render_template, request, url_for
 from flask_bootstrap import Bootstrap5
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Float, Integer, String, select
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import select
 from werkzeug.wrappers import Response
 
+from virtual_bookshelf import database
+from virtual_bookshelf.database import Session
+from virtual_bookshelf.models import Book
+
 app = Flask(__name__)
-app.config.from_prefixed_env()
 bootstrap = Bootstrap5(app)
-db = SQLAlchemy(app)
-
-
-@app.cli.command('create-db')
-def create_db() -> None:
-    db.create_all()
-
-
-@app.cli.command('drop-db')
-def drop_db() -> None:
-    db.drop_all()
-
-
-class Book(db.Model):   # type: ignore[name-defined]
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    title: Mapped[str] = mapped_column(String(250), unique=True)
-    author: Mapped[str] = mapped_column(String(250))
-    rating: Mapped[float] = mapped_column(Float(precision=1))
+database.init_app(app)
 
 
 @app.route('/')
 def home() -> str:
-    all_books = db.session.execute(select(Book)).scalars()
+    all_books = Session.scalars(select(Book)).all()
     return render_template('index.html', all_books=all_books)
 
 
@@ -40,10 +24,10 @@ def add_book() -> str | Response:
         book = Book(
             title=request.form['book-name'],
             author=request.form['book-author'],
-            rating=request.form['rating'],
+            rating=float(request.form['rating']),
         )
-        db.session.add(book)
-        db.session.commit()
+        Session.add(book)
+        Session.commit()
         return redirect(url_for('home'))
 
     return render_template('add.html')
