@@ -41,8 +41,19 @@ def delete_all() -> Response:
 
 
 @app.route('/delete/<int:id>')
-def delete_book(id: str) -> Response:
+def delete_book(id: int) -> Response:
     book = Session.get(Book, id)
     Session.delete(book)
     Session.commit()
     return redirect(url_for('home'))
+
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit_book(id: int) -> str | Response:
+    book = Session.get(Book, id)
+    if request.method == 'POST' and book:
+        book.rating = float(request.form['rating'])
+        Session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('edit.html', book=book)

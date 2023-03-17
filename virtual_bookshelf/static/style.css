@@ -25,6 +25,14 @@ table {
     margin-top: 3rem;
 }
 
+tbody td:last-child a {
+    display: inline-block;
+}
+
+.bi {
+    margin: 0.5rem;
+}
+
 form {
     max-width: 24rem;
     margin: 0 auto;
@@ -44,8 +52,4 @@ label {
 
 input {
     text-align: center;
-}
-
-.bi {
-    margin: 0.5rem;
 }
