@@ -27,11 +27,19 @@
                     <td>{{ book.author }}</td>
                     <td>{{ book.rating }}</td>
                     <td>
-                        <a href="{{ url_for('edit_book', id=book.id) }}" title="Edit book data">
+                        <a
+                            class="icon-link" 
+                            href="{{ url_for('edit_book', id=book.id) }}" 
+                            title="Edit book data"
+                        >
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a href="{{ url_for('delete_book', id=book.id) }}" title="Remove book">
-                            <i class="bi bi-trash"></i>
+                        <a 
+                            class="icon-link" 
+                            href="{{ url_for('delete_book', id=book.id) }}" 
+                            title="Remove book"
+                        >
+                            <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
                 </tr>

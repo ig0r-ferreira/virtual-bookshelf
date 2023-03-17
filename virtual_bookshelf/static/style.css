@@ -29,8 +29,27 @@ tbody td:last-child a {
     display: inline-block;
 }
 
+th,
+td {
+    vertical-align: middle;
+}
+
 .bi {
+    font-size: 1.25rem;
     margin: 0.5rem;
+}
+
+.icon-link {
+    color: unset;
+    text-decoration: none;
+}
+
+.bi-pencil-square {
+    color: midnightblue;
+}
+
+.bi-trash-fill {
+    color: crimson;
 }
 
 form {
