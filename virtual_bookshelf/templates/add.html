@@ -7,7 +7,7 @@
 {% block content %}
 <main class="container">
     <h1>Add new book</h1>
-    <form action="{{ url_for('add_book') }}" method="post">
+    <form action="{{ url_for('bookshelf.add_book') }}" method="post">
         <div class="row mx-auto">
             <label class="form-label" for="book-title">Book Title</label>
             <input class="form-control" type="text" id="book-title" name="book-title" required>
@@ -21,7 +21,7 @@
             <input class="form-control" type="number" id="rating" name="rating" min="0" max="10" step="0.1" required>
         </div>
         <button class="btn btn-dark" type="submit">Save</button>
-        <a class="btn btn-dark" href="{{ url_for('home') }}">Cancel</a>
+        <a class="btn btn-dark" href="{{ url_for('index') }}">Cancel</a>
     </form>
 </main>
 {% endblock content %}

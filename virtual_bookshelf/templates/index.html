@@ -7,9 +7,9 @@
 {% block content %}
     <main class="container">
         <h1>My Virtual Bookshelf</h1>
-        <a href="{{ url_for('add_book') }}" class="btn btn-dark">New book</a>
+        <a href="{{ url_for('bookshelf.add_book') }}" class="btn btn-dark">New book</a>
         {% if all_books %}
-        <a href="{{ url_for('delete_all') }}" class="btn btn-dark">Clear all</a>
+        <a href="{{ url_for('bookshelf.delete_all') }}" class="btn btn-dark">Clear all</a>
         {% endif %}
         <table class="table">
             <thead>
@@ -29,14 +29,14 @@
                     <td>
                         <a
                             class="icon-link" 
-                            href="{{ url_for('edit_book', id=book.id) }}" 
+                            href="{{ url_for('bookshelf.edit_book', id=book.id) }}" 
                             title="Edit book data"
                         >
                             <i class="bi bi-pencil-square"></i>
                         </a>
                         <a 
                             class="icon-link" 
-                            href="{{ url_for('delete_book', id=book.id) }}" 
+                            href="{{ url_for('bookshelf.delete_book', id=book.id) }}" 
                             title="Remove book"
                         >
                             <i class="bi bi-trash-fill"></i>
