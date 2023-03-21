@@ -7,6 +7,17 @@
 {% block content %}
 <main class="container">
     <h1>Add new book</h1>
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+        <ul class="error-list list-group">
+        {% for error in errors %}
+            <li class="list-group-item list-group-item-danger">
+                <strong>Error: {{ error }}</strong>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     <form action="{{ url_for('bookshelf.add_book') }}" method="post">
         <div class="row mx-auto">
             <label class="form-label" for="book-title">Book Title</label>

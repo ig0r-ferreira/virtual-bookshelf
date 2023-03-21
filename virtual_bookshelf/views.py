@@ -1,5 +1,14 @@
-from flask import Blueprint, Flask, redirect, render_template, request, url_for
+from flask import (
+    Blueprint,
+    Flask,
+    flash,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from sqlalchemy import delete, select
+from sqlalchemy.exc import IntegrityError
 from werkzeug.wrappers import Response
 
 from virtual_bookshelf.database import Session
@@ -17,14 +26,19 @@ def index() -> str:
 @bp.route('/add', methods=['GET', 'POST'])
 def add_book() -> str | Response:
     if request.method == 'POST':
+        book_title = request.form['book-title']
         book = Book(
-            title=request.form['book-title'],
+            title=book_title,
             author=request.form['book-author'],
             rating=float(request.form['rating']),
         )
         Session.add(book)
-        Session.commit()
-        return redirect(url_for('index'))
+        try:
+            Session.commit()
+        except IntegrityError:
+            flash(f'Book {book_title!a} is already registered.', 'error')
+        else:
+            return redirect(url_for('index'))
 
     return render_template('add.html')
 
