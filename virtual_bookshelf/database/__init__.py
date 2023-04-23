@@ -2,7 +2,7 @@ from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from virtual_bookshelf.models import Base
+from .models import Base
 
 Session = scoped_session(sessionmaker(autoflush=False))
 

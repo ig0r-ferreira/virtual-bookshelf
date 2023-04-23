@@ -12,7 +12,7 @@ from sqlalchemy.exc import IntegrityError
 from werkzeug.wrappers import Response
 
 from virtual_bookshelf.database import Session
-from virtual_bookshelf.models import Book
+from virtual_bookshelf.database.models import Book
 
 bp = Blueprint('bookshelf', __name__)
 
