@@ -1,17 +1,14 @@
 from flask import (
-    Blueprint,
-    Flask,
-    flash,
-    redirect,
-    render_template,
-    request,
-    url_for,
+    Blueprint, 
+    flash, 
+    redirect, 
+    render_template, 
+    request, 
+    url_for
 )
-from sqlalchemy import delete, select
-from sqlalchemy.exc import IntegrityError
-from werkzeug.wrappers import Response
+from flask.typing import ResponseReturnValue
 
-from virtual_bookshelf.database import Session
+from virtual_bookshelf.database import IntegrityError, Session, delete, select
 from virtual_bookshelf.database.models import Book
 
 bp = Blueprint('bookshelf', __name__)
@@ -24,7 +21,7 @@ def index() -> str:
 
 
 @bp.route('/add', methods=['GET', 'POST'])
-def add_book() -> str | Response:
+def add_book() -> ResponseReturnValue:
     if request.method == 'POST':
         book_title = request.form['book-title']
         book = Book(
@@ -44,14 +41,14 @@ def add_book() -> str | Response:
 
 
 @bp.route('/delete-all')
-def delete_all() -> Response:
+def delete_all() -> ResponseReturnValue:
     Session.execute(delete(Book))
     Session.commit()
     return redirect(url_for('index'))
 
 
 @bp.route('/delete/<int:id>')
-def delete_book(id: int) -> Response:
+def delete_book(id: int) -> ResponseReturnValue:
     book = Session.get(Book, id)
     Session.delete(book)
     Session.commit()
@@ -59,7 +56,7 @@ def delete_book(id: int) -> Response:
 
 
 @bp.route('/edit/<int:id>', methods=['GET', 'POST'])
-def edit_book(id: int) -> str | Response:
+def edit_book(id: int) -> ResponseReturnValue:
     book = Session.get(Book, id)
     if request.method == 'POST' and book:
         book.rating = float(request.form['rating'])
@@ -67,9 +64,3 @@ def edit_book(id: int) -> str | Response:
         return redirect(url_for('index'))
 
     return render_template('edit.html', book=book)
-
-
-def init_app(app: Flask) -> Flask:
-    app.register_blueprint(bp)
-    app.add_url_rule('/', endpoint='index')
-    return app

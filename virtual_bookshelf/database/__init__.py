@@ -1,5 +1,6 @@
 from flask import Flask
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, delete, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 from .models import Base
