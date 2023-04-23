@@ -29,5 +29,14 @@ profile = "black"
 line_length = 79
 
 [tool.taskipy.tasks]
-lint = "isort --check --diff . && blue --check --diff . && mypy ."
+lint = "isort --check --diff . && blue --check --diff . && mypy"
 format = "isort . && blue ."
+
+[tool.mypy]
+packages = [
+    'virtual_bookshelf'
+]
+
+[[tool.mypy.overrides]]
+module = "flask_bootstrap.*"
+ignore_missing_imports = true

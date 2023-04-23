@@ -1,11 +1,4 @@
-from flask import (
-    Blueprint, 
-    flash, 
-    redirect, 
-    render_template, 
-    request, 
-    url_for
-)
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask.typing import ResponseReturnValue
 
 from virtual_bookshelf.database import IntegrityError, Session, delete, select
