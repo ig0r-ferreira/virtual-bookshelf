@@ -20,7 +20,7 @@ def add_book() -> ResponseReturnValue:
         book = Book(
             title=book_title,
             author=request.form['book-author'],
-            rating=float(request.form['rating']),
+            rating=float(request.form['book-rating']),
         )
         Session.add(book)
         try:
@@ -45,7 +45,7 @@ def delete_book(id: int) -> ResponseReturnValue:
 def edit_book(id: int) -> ResponseReturnValue:
     book = Session.get(Book, id)
     if request.method == 'POST' and book:
-        book.rating = float(request.form['rating'])
+        book.rating = float(request.form['book-rating'])
         Session.commit()
         return redirect(url_for('index'))
 
