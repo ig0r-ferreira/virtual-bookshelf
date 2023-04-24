@@ -33,13 +33,6 @@ def add_book() -> ResponseReturnValue:
     return render_template('add.html')
 
 
-@bp.route('/delete-all')
-def delete_all() -> ResponseReturnValue:
-    Session.execute(delete(Book))
-    Session.commit()
-    return redirect(url_for('index'))
-
-
 @bp.route('/delete/<int:id>')
 def delete_book(id: int) -> ResponseReturnValue:
     book = Session.get(Book, id)
