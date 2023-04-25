@@ -7,44 +7,18 @@
 {% block content %}
 <main class="container">
     <h1>Edit book data</h1>
-    <form action="{{ url_for('bookshelf.edit_book', id=book.id) }}" method="post">
-        <div class="row mx-auto">
-            <label class="form-label" for="book-title">Book Title</label>
-            <input 
-                class="form-control" 
-                type="text" 
-                id="book-title" 
-                name="book-title" 
-                value="{{ book.title }}"
-                readonly
-            >
-        </div>
-        <div class="row mx-auto">
-            <label class="form-label" for="book-author">Book Author</label>
-            <input 
-                class="form-control" 
-                type="text" 
-                id="book-author" 
-                name="book-author" 
-                value="{{ book.author }}"
-                readonly
-            >
-        </div>
-        <div class="row mx-auto">
-            <label class="form-label" for="rating">New Rating</label>
-            <input 
-                class="form-control" 
-                type="number" 
-                id="rating" 
-                name="rating" 
-                min="0" 
-                max="10" 
-                step="0.1" 
-                required
-            >
-        </div>
-        <button class="btn btn-dark" type="submit">Save</button>
-        <a class="btn btn-dark" href="{{ url_for('index') }}">Cancel</a>
+    <form action="{{ url_for('bookshelf.edit_book', id=book.id) }}" method="post" novalidate>
+        {% if form.csrf_token %}
+            {{ form.csrf_token }}
+            {% if form.csrf_token.errors %}
+                <div class="warning">You have submitted an invalid CSRF token</div>
+            {% endif %}
+        {% endif %}
+        {{ render_field(form.book_title) }}
+        {{ render_field(form.book_author) }}
+        {{ render_field(form.book_rating) }}
+        {{ render_field(form.submit_btn, button_style='dark') }}
+        <a class="btn btn-dark btn-md" href="{{ url_for('index') }}">Cancel</a>
     </form>
 </main>
 {% endblock content %}

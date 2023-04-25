@@ -1,10 +1,20 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from decimal import Decimal
+
+from flask import Blueprint, abort, flash, redirect, render_template, url_for
 from flask.typing import ResponseReturnValue
 
-from virtual_bookshelf.database import IntegrityError, Session, delete, select
+from virtual_bookshelf.database import IntegrityError, Session, select
 from virtual_bookshelf.database.models import Book
+from virtual_bookshelf.forms import AddBook, EditBook
 
 bp = Blueprint('bookshelf', __name__)
+
+
+def _convert_to_decimal(value: Decimal | None) -> Decimal:
+    if value is None:
+        return Decimal('NaN')
+
+    return value
 
 
 @bp.route('/')
@@ -15,22 +25,24 @@ def index() -> str:
 
 @bp.route('/add', methods=['GET', 'POST'])
 def add_book() -> ResponseReturnValue:
-    if request.method == 'POST':
-        book_title = request.form['book-title']
+    form = AddBook()
+
+    if form.validate_on_submit():
+        book_title = form.book_title.data
         book = Book(
             title=book_title,
-            author=request.form['book-author'],
-            rating=float(request.form['book-rating']),
+            author=form.book_author.data,
+            rating=_convert_to_decimal(form.book_rating.data),
         )
-        Session.add(book)
         try:
+            Session.add(book)
             Session.commit()
         except IntegrityError:
             flash(f'Book {book_title!a} is already registered.', 'error')
         else:
             return redirect(url_for('index'))
 
-    return render_template('add.html')
+    return render_template('add.html', form=form)
 
 
 @bp.route('/delete/<int:id>')
@@ -44,9 +56,16 @@ def delete_book(id: int) -> ResponseReturnValue:
 @bp.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_book(id: int) -> ResponseReturnValue:
     book = Session.get(Book, id)
-    if request.method == 'POST' and book:
-        book.rating = float(request.form['book-rating'])
+    if not book:
+        abort(404)
+
+    form = EditBook(
+        data={'book_title': book.title, 'book_author': book.author}
+    )
+
+    if form.validate_on_submit():
+        book.rating = _convert_to_decimal(form.book_rating.data)
         Session.commit()
         return redirect(url_for('index'))
 
-    return render_template('edit.html', book=book)
+    return render_template('edit.html', form=form, book=book)

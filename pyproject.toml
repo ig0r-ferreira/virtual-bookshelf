@@ -12,6 +12,7 @@ flask = "^2.2.3"
 bootstrap-flask = "^2.2.0"
 python-dotenv = "^1.0.0"
 sqlalchemy = "^2.0.6"
+flask-wtf = "^1.1.1"
 
 
 [tool.poetry.group.dev.dependencies]

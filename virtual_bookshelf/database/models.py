@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from sqlalchemy import Float, String
 from sqlalchemy.orm import (
     DeclarativeBase,
@@ -16,4 +18,4 @@ class Book(Base):
     id: Mapped[int] = mapped_column(primary_key=True, init=False)
     title: Mapped[str] = mapped_column(String(250), unique=True)
     author: Mapped[str] = mapped_column(String(250))
-    rating: Mapped[float] = mapped_column(Float(precision=1))
+    rating: Mapped[Decimal] = mapped_column(Float(precision=1, asdecimal=True))

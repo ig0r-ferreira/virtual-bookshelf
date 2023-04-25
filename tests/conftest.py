@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import pytest
 from flask import Flask
 from flask.testing import FlaskClient
@@ -9,15 +11,21 @@ from virtual_bookshelf.database.models import Book
 
 def books() -> list[Book]:
     return [
-        Book(title='Book 1', author='Author 1', rating=8.0),
-        Book(title='Book 2', author='Author 2', rating=5.0),
-        Book(title='Book 3', author='Author 3', rating=10.0),
+        Book(title='Book 1', author='Author 1', rating=Decimal(8)),
+        Book(title='Book 2', author='Author 2', rating=Decimal(5.7)),
+        Book(title='Book 3', author='Author 3', rating=Decimal(10)),
     ]
 
 
 @pytest.fixture
 def app() -> Flask:
-    app_ = create_app({'TESTING': True, 'DATABASE_URI': 'sqlite://'})
+    app_ = create_app(
+        {
+            'TESTING': True,
+            'DATABASE_URI': 'sqlite://',
+            'WTF_CSRF_ENABLED': False,
+        }
+    )
 
     with app_.app_context():
         create_tables()
