@@ -11,9 +11,9 @@ from virtual_bookshelf.database.models import Book
 
 def books() -> list[Book]:
     return [
-        Book(title='Book 1', author='Author 1', rating=Decimal(8)),
-        Book(title='Book 2', author='Author 2', rating=Decimal(5.7)),
-        Book(title='Book 3', author='Author 3', rating=Decimal(10)),
+        Book(title='Book 1', author='Author 1', rating=Decimal('8.0')),
+        Book(title='Book 2', author='Author 2', rating=Decimal('5.7')),
+        Book(title='Book 3', author='Author 3', rating=Decimal('10.0')),
     ]
 
 
