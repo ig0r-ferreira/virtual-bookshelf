@@ -1,9 +1,6 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap5
 
-from virtual_bookshelf import config, database, views
-
-bootstrap = Bootstrap5()
+from virtual_bookshelf import appearance, config, database, views
 
 
 def create_app(**kwargs) -> Flask:
@@ -12,6 +9,6 @@ def create_app(**kwargs) -> Flask:
     config.init_app(app, **kwargs)
     database.init_app(app)
     views.init_app(app)
-    bootstrap.init_app(app)
+    appearance.init_app(app)
 
     return app
