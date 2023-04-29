@@ -20,11 +20,9 @@ def books() -> list[Book]:
 @pytest.fixture
 def app() -> Flask:
     app_ = create_app(
-        {
-            'TESTING': True,
-            'DATABASE_URI': 'sqlite://',
-            'WTF_CSRF_ENABLED': False,
-        }
+        TESTING=True,
+        DATABASE_URI='sqlite://',
+        WTF_CSRF_ENABLED=False,
     )
 
     with app_.app_context():

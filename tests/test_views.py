@@ -1,4 +1,3 @@
-import re
 from decimal import Decimal
 from http import HTTPStatus
 
@@ -16,8 +15,10 @@ def test_access_homepage_should_return_http_code_200(
     data = response.get_data(as_text=True)
 
     assert response.status_code == HTTPStatus.OK
-    pattern = 'My Virtual Bookshelf|Book 1|Book 2|Book 3'
-    assert len(re.findall(pattern, data)) == 4
+    assert 'My Virtual Bookshelf' in data
+    assert 'Book 1' in data
+    assert 'Book 2' in data
+    assert 'Book 3' in data
 
 
 def test_access_add_book_page_should_return_http_code_200(
