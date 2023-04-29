@@ -1,6 +1,7 @@
 from flask import Flask
 
-from virtual_bookshelf import appearance, config, database, views
+from virtual_bookshelf import config, views
+from virtual_bookshelf.extensions import appearance, database
 
 
 def create_app(**kwargs) -> Flask:

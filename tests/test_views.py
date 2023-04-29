@@ -4,8 +4,8 @@ from http import HTTPStatus
 import pytest
 from flask.testing import FlaskClient
 
-from virtual_bookshelf.database import Session
-from virtual_bookshelf.database.models import Book
+from virtual_bookshelf.extensions.database import Session
+from virtual_bookshelf.extensions.database.models import Book
 
 
 def test_access_homepage_should_return_http_code_200(

@@ -5,8 +5,8 @@ from flask import Flask
 from flask.testing import FlaskClient
 
 from virtual_bookshelf import create_app
-from virtual_bookshelf.database import Session, create_tables
-from virtual_bookshelf.database.models import Book
+from virtual_bookshelf.extensions.database import Session, create_tables
+from virtual_bookshelf.extensions.database.models import Book
 
 
 def books() -> list[Book]:

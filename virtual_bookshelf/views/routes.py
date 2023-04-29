@@ -3,9 +3,13 @@ from decimal import Decimal
 from flask import Blueprint, abort, flash, redirect, render_template, url_for
 from flask.typing import ResponseReturnValue
 
-from virtual_bookshelf.database import IntegrityError, Session, select
-from virtual_bookshelf.database.models import Book
-from virtual_bookshelf.forms import AddBook, EditBook
+from virtual_bookshelf.extensions.database import (
+    IntegrityError,
+    Session,
+    select,
+)
+from virtual_bookshelf.extensions.database.models import Book
+from virtual_bookshelf.extensions.forms import AddBook, EditBook
 
 bp = Blueprint('bookshelf', __name__)
 

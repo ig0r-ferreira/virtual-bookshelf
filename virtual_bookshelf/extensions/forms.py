@@ -1,5 +1,3 @@
-from typing import Any
-
 from flask_wtf import FlaskForm
 from wtforms.fields import DecimalField, StringField, SubmitField
 from wtforms.validators import InputRequired, NumberRange
