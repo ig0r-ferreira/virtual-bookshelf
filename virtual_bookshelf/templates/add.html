@@ -7,22 +7,12 @@
 {% block content %}
 <main class="container">
     <h1>Add new book</h1>
-    {% with errors = get_flashed_messages(category_filter=["error"]) %}
-    {% if errors %}
-        <ul class="error-list list-group">
-        {% for error in errors %}
-            <li class="list-group-item list-group-item-danger">
-                <strong>Error: {{ error }}</strong>
-            </li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
+    {% include 'components/notifications.html' %}
     <form action="{{ url_for('bookshelf.add_book') }}" method="post" novalidate>
         {% if form.csrf_token %}
             {{ form.csrf_token }}
             {% if form.csrf_token.errors %}
-                <div class="warning">You have submitted an invalid CSRF token</div>
+                <div class="alert alert-warning">You have submitted an invalid CSRF token</div>
             {% endif %}
         {% endif %}
         {{ render_field(form.book_title) }}

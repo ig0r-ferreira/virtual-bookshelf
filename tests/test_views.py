@@ -95,7 +95,7 @@ def test_add_an_existing_book_should_return_an_error_message(
     data = response.get_data(as_text=True)
 
     assert response.status_code == HTTPStatus.OK
-    assert 'Error: Book &#39;Book 2&#39; is already registered.' in data
+    assert 'Book &#39;Book 2&#39; is already registered.' in data
 
 
 @pytest.mark.parametrize('id', [1, 2, 3])

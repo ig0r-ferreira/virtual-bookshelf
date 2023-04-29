@@ -42,7 +42,7 @@ def add_book() -> ResponseReturnValue:
             Session.add(book)
             Session.commit()
         except IntegrityError:
-            flash(f'Book {book_title!a} is already registered.', 'error')
+            flash(f'Book {book_title!a} is already registered.', 'danger')
         else:
             return redirect(url_for('index'))
 
