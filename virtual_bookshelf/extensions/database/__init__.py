@@ -9,8 +9,8 @@ from .models import Base
 Session = scoped_session(sessionmaker(autoflush=False))
 
 
-def create_tables() -> None:
-    """Creates all tables in the database."""
+def init_db() -> None:
+    Base.metadata.drop_all(Session.get_bind())
     Base.metadata.create_all(Session.get_bind())
 
 
@@ -22,4 +22,10 @@ def init_app(app: Flask) -> None:
     def remove_session(exception=None) -> None:
         Session.remove()
 
-    app.cli.add_command(click.command(create_tables))
+    @click.command('init-db')
+    def init_db_command():
+        """Clear the existing data and create new tables."""
+        init_db()
+        click.echo('Initialized the database.')
+
+    app.cli.add_command(init_db_command)

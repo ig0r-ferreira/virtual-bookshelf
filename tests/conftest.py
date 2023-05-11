@@ -2,10 +2,10 @@ from decimal import Decimal
 
 import pytest
 from flask import Flask
-from flask.testing import FlaskClient
+from flask.testing import FlaskClient, FlaskCliRunner
 
 from virtual_bookshelf import create_app
-from virtual_bookshelf.extensions.database import Session, create_tables
+from virtual_bookshelf.extensions.database import Session, init_db
 from virtual_bookshelf.extensions.database.models import Book
 
 
@@ -26,7 +26,7 @@ def app() -> Flask:
     )
 
     with app_.app_context():
-        create_tables()
+        init_db()
         Session.add_all(books())
         Session.commit()
 
@@ -36,3 +36,8 @@ def app() -> Flask:
 @pytest.fixture
 def client(app: Flask) -> FlaskClient:
     return app.test_client()
+
+
+@pytest.fixture
+def cli_runner(app: Flask) -> FlaskCliRunner:
+    return app.test_cli_runner()
