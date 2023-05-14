@@ -1,7 +1,7 @@
 <div align="center">
     <h1 >Virtual Bookshelf</h1>
     <div>
-        <img src="demo.gif"  alt="Virtual Bookshelf" style="display: block;">
+        <img src="demo.gif"  alt="Virtual Bookshelf">
     </div>
     <br>
     <p>A simple virtual bookshelf to practice CRUD with SQLite and SQLAlchemy.</p>
@@ -9,14 +9,14 @@
 
 ## Tools used
 <div>
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" width="40" style="margin-right:10px;">
-    <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="Flask" title="Flask" width="40" style="margin-right:10px; filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(41deg) brightness(103%) contrast(101%);">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite" title="SQLite" width="40" style="margin-right:10px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" alt="SQLAlchemy" title="SQLAlchemy" width="40" style="margin-right:10px; filter: invert(1) hue-rotate(180deg) saturate(10);">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="Pytest" title="Pytest" width="40" style="margin-right:10px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" width="40" style="margin-right:10px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" width="40" style="margin-right:10px;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" title="Bootstrap" width="40" style="margin-right:10px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python" title="Python">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40" alt="Flask" title="Flask">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" width="40" alt="SQLite" title="SQLite">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="40" alt="SQLAlchemy" title="SQLAlchemy">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" width="40" alt="Pytest" title="Pytest">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" alt="HTML 5" title="HTML 5">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" alt="CSS 3" title="CSS 3">&ensp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="40" alt="Bootstrap" title="Bootstrap">&ensp;
 </div>
 
 ## How to install and run
@@ -28,7 +28,7 @@
     FLASK_APP="virtual_bookshelf"
     FLASK_SECRET_KEY="your SECRET KEY here"
     ```
-    Use this command to create a **SECRET KEY**: `python -c 'import secrets; print(secrets.token_hex())'`
+    Use the following command to create a **SECRET KEY**: `python -c 'import secrets; print(secrets.token_hex())'`
 3. Open the terminal from the project folder and install by running:
     ```
     poetry install
@@ -46,7 +46,7 @@
 
 Once you have installed the project, run:
 ``` 
-    task test
+task test
 ```
 
 ## Author
