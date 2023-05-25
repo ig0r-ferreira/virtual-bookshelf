@@ -36,7 +36,7 @@ lint = "isort --check --diff . && blue --check --diff ."
 format = "isort . && blue ."
 pre_test = "task lint"
 test = "coverage run --source=virtual_bookshelf -m pytest -s -x -vv"
-post_test = "coverage html"
+post_test = "coverage report && coverage html"
 
 [tool.mypy]
 packages = [
